@@ -9,8 +9,12 @@ const getTiposEquipos = async (req, res) => {
 
     // const query = {estado: true};
     const query = {};
-    const tipoEquipoBD = await TipoEquipo.find(query);
-    res.json({tipoEquipoBD});
+    const tipoEquipoBD = await TipoEquipo.find(query)        
+    .populate({
+        path: 'usuario',
+        match: { estado: true }
+    });
+    res.json(tipoEquipoBD);
 }
 
 /**

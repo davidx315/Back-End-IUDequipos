@@ -39,7 +39,7 @@ const InventarioSchema = Schema({
     },
     estado: {
         type: Schema.Types.ObjectId,
-        ref: 'EstadoEquipo',
+        ref: 'Estado',
         required: true
     },
     tipoEquipo: {
@@ -50,3 +50,17 @@ const InventarioSchema = Schema({
 });
 
 module.exports = model('Inventario', InventarioSchema);
+/*
+{
+    "serial": "",
+    "modelo": "",
+    "descripcion": "",
+    "foto": "",
+    "color": "",
+    "fechaCompra": "",
+    "precio", 0,
+    "usuario": "",
+    "marca": "",
+    "estado": "",
+    "tipoEquipo": ""
+}*/

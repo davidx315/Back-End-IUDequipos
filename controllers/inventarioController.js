@@ -13,10 +13,18 @@ const { off } = require('../models/marca');
 /**
  * Consultar todos inventarios
  */
-const getInventarios = async (req, res = response) => {
+ const getInventarios = async (req, res = response) => {
     try{
         const query = {};
-        const inventariosBD = await Inventario.find(query);
+        const inventariosBD = await Inventario.find(query)
+        .populate({
+            path: 'usuario',
+            match: { estado: true }
+        })
+        .populate({
+            path: 'marca',
+            match: { estado: true }
+        });
         res.json(inventariosBD);
     }catch(e){
         return res.status(500).json({
@@ -32,7 +40,11 @@ const getInventarios = async (req, res = response) => {
     try{
         const { id } = req.params;
         const query = { _id: id};
-        const inventarioBD = await Inventario.findOne(query);
+        const inventarioBD = await Inventario.findOne(query).populate({
+            path: 'usuario',
+            match: { estado: true }
+        });
+        // TODO: personalizar error de no encontrado
         res.json(inventarioBD);
     }catch(e){
         return res.status(500).json({
