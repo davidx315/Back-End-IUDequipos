@@ -2,6 +2,8 @@ const express = require('express');
 
 const app = express();
 const fileUpload = require('express-fileupload');
+const cors = require('cors');
+
 const usuarios = require('./routes/usuario');
 const tipoEquipos = require('./routes/tipoEquipo');
 const estadosEquipos = require('./routes/estadoEquipo');
@@ -16,6 +18,7 @@ app.use(fileUpload({
      useTempFiles : true,
      tempFileDir : '/tmp/'
 }));
+app.use(cors());
 
 app.use('/api/usuarios', usuarios);
 app.use('/api/tipoEquipos', tipoEquipos);
